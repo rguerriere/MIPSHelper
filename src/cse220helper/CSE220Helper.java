@@ -1,13 +1,9 @@
 package cse220helper;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -32,6 +28,7 @@ public class CSE220Helper extends Application
         primaryStage.setTitle("MIPS Helper");
         
         VBox registers = new VBox();
+        registers.setSpacing(2.5);
                         
         //Hbox Setup
         HBox aRegistersBox = new HBox();
@@ -138,6 +135,7 @@ public class CSE220Helper extends Application
                 tRegistersBox, t0, t1, t2, t3, t4, t5, t6, t7, t8, t9);
         
         VBox linksVbox = new VBox();
+        linksVbox.setSpacing(10);
         
         HBox ascii = new HBox();
         HBox syscalls = new HBox();
@@ -167,7 +165,6 @@ public class CSE220Helper extends Application
                     final WebView browser = new WebView();
                     final WebEngine webEngine = browser.getEngine();
                     webEngine.load("http://courses.missouristate.edu/kenvollmar/mars/help/SyscallHelp.html");
-                    
                     Scene secondScene = new Scene(browser, 1280, 720);
  
                     Stage newWindow = new Stage();
@@ -179,7 +176,7 @@ public class CSE220Helper extends Application
                    
         asciiButton.setText("ASCII TABLE");
         syscallsButton.setText("SYSCALLS");
-                      
+                              
         ascii.getChildren().addAll(asciiButton);
         syscalls.getChildren().addAll(syscallsButton);
         
@@ -189,7 +186,9 @@ public class CSE220Helper extends Application
         layout.setLeft(registers);
         layout.setRight(linksVbox);
         
-        Scene scene = new Scene(layout, 300, 550);
+        Scene scene = new Scene(layout, 400, 800);
+        scene.getStylesheets().add("style.css");
+        
         primaryStage.setScene(scene);
         
         primaryStage.getIcons().add(new Image("file:mipslogo.png"));
