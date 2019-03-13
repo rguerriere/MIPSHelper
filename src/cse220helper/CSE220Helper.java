@@ -137,58 +137,64 @@ public class CSE220Helper extends Application
         VBox linksVbox = new VBox();
         linksVbox.setSpacing(10);
         
+        HBox themeLabelBox = new HBox();
+        HBox themeSwitchBox = new HBox();
         HBox ascii = new HBox();
         HBox syscalls = new HBox();
         
+        ToggleSwitch themeSwitch = new ToggleSwitch();
+        Label themeSwitchLabel = new Label("Toggle Dark Mode");
         Button asciiButton = new Button();
         Button syscallsButton = new Button();
         
         
         
         asciiButton.setOnAction(e ->
-                {                   
-                    final WebView browser = new WebView();
-                    final WebEngine webEngine = browser.getEngine();
-                    webEngine.load("http://www.asciitable.com/");
-                    
-                    Scene secondScene = new Scene(browser, 1280, 720);
- 
-                    Stage newWindow = new Stage();
-                    newWindow.setTitle("Second Stage");
-                    newWindow.setScene(secondScene);
-                    newWindow.show();
-                }           
-            );
+            {                   
+                final WebView browser = new WebView();
+                final WebEngine webEngine = browser.getEngine();
+                webEngine.load("http://www.asciitable.com/");
+
+                Scene secondScene = new Scene(browser, 1280, 720);
+
+                Stage newWindow = new Stage();
+                newWindow.setTitle("Second Stage");
+                newWindow.setScene(secondScene);
+                newWindow.show();
+            }           
+        );
         
         syscallsButton.setOnAction(e ->
-                {                   
-                    final WebView browser = new WebView();
-                    final WebEngine webEngine = browser.getEngine();
-                    webEngine.load("http://courses.missouristate.edu/kenvollmar/mars/help/SyscallHelp.html");
-                    Scene secondScene = new Scene(browser, 1280, 720);
- 
-                    Stage newWindow = new Stage();
-                    newWindow.setTitle("Second Stage");
-                    newWindow.setScene(secondScene);
-                    newWindow.show();
-                }           
-            );
-                   
+            {                   
+                final WebView browser = new WebView();
+                final WebEngine webEngine = browser.getEngine();
+                webEngine.load("http://courses.missouristate.edu/kenvollmar/mars/help/SyscallHelp.html");
+                Scene secondScene = new Scene(browser, 1280, 720);
+
+                Stage newWindow = new Stage();
+                newWindow.setTitle("Second Stage");
+                newWindow.setScene(secondScene);
+                newWindow.show();
+            }           
+        );
+                           
         asciiButton.setText("ASCII TABLE");
         syscallsButton.setText("SYSCALLS");
-                              
+         
+        themeLabelBox.getChildren().addAll(themeSwitchLabel);
+        themeSwitchBox.getChildren().addAll(themeSwitch);
         ascii.getChildren().addAll(asciiButton);
         syscalls.getChildren().addAll(syscallsButton);
         
-        linksVbox.getChildren().addAll(ascii, syscalls);
+        linksVbox.getChildren().addAll(ascii, syscalls, themeLabelBox, themeSwitchBox);
         
         BorderPane layout = new BorderPane();
         layout.setLeft(registers);
         layout.setRight(linksVbox);
         
         Scene scene = new Scene(layout, 400, 800);
-        scene.getStylesheets().add("style.css");
-        
+        scene.getStylesheets().add("styleDark.css");
+               
         primaryStage.setScene(scene);
         
         primaryStage.getIcons().add(new Image("file:mipslogo.png"));
